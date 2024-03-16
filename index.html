@@ -27,11 +27,15 @@
     <div class="logo">小废鼠主页</div>
     <div class="DataEchoUI-navbar-links">
       <a class="DataEchoUI-highlight-1" href="index.html">主页</a>
+      <a href="1.html">其他</a>
     </div>
     <div class="filler"></div>
   </div>
   <div id="DataEchoUI-navbar-left-31" style="width: 40%;backdrop-filter: blur(3px);">
-
+  </div>
+  <div class="DataEchoUI-card">
+    <p>距离6月17日还有 <span id="timeLeft"></span></p>
+    <p><div id="ys">原神好句正在加载...</div></p>
   </div>
   <div class="DataEchoUI-card">
     <h2>天气</h2>
@@ -41,9 +45,21 @@
     <h2>关于</h2>
     <p>作者：没用的小废鼠</p>
     <p>APi提供:</p>
-    <p>oiapi</p>
+    <p>没用的小废鼠（原神好句api）</p>
+    <p>oiapi（天气api）</p>
   </div>
   <script>
+fetch('https://unpkg.com/genshin-good-words/Good-words.txt')
+.then(response => response.text())
+.then(data => {
+  const lines = data.split('\n');
+  const randomLine = lines[Math.floor(Math.random() * lines.length)];
+  document.getElementById('ys').innerText = randomLine;
+})
+.catch(error => {
+  console.error('Error fetching ys:', error);
+});
+
 function getWeather() {
       var cityCode = "101210705";
       var url = "https://oiapi.net/API/weather?city=" + cityCode;
@@ -67,7 +83,39 @@ function getWeather() {
     getWeather()
     setInterval(getWeather, 60 * 60 * 1000);
 </script>
+<script>
+  function updateTime() {
+    // 获取今天的日期
+    var today = new Date();
   
+    // 设置目标日期为6月17日
+    var targetDate = new Date(today.getFullYear(), 5, 17); // 月份从0开始，所以5代表6月
+  
+    // 如果目标日期已经过去，则将目标日期设置为明年的6月17日
+    if (today.getTime() > targetDate.getTime()) {
+      targetDate.setFullYear(targetDate.getFullYear() + 1);
+    }
+  
+    // 计算距离目标日期的时间
+    var timeDiff = targetDate.getTime() - today.getTime();
+    var daysLeft = Math.floor(timeDiff / (1000 * 3600 * 24));
+    timeDiff -= daysLeft * (1000 * 3600 * 24);
+    var hoursLeft = Math.floor(timeDiff / (1000 * 3600));
+    timeDiff -= hoursLeft * (1000 * 3600);
+    var minutesLeft = Math.floor(timeDiff / (1000 * 60));
+    timeDiff -= minutesLeft * (1000 * 60);
+    var secondsLeft = Math.floor(timeDiff / 1000);
+  
+    // 更新页面上的时间显示
+    document.getElementById("timeLeft").textContent = daysLeft + "天 " + hoursLeft + "小时 " + minutesLeft + "分钟 " + secondsLeft + "秒";
+  }
+  
+  // 每秒更新一次时间
+  setInterval(updateTime, 1000);
+  
+  // 页面加载时立即更新时间
+  updateTime();
+  </script>
 </body>
 
 </html>
