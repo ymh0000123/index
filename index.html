@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>主页</title>
+  <link rel="stylesheet" href="https://dataechoui.pages.dev/DataEchoUI.css">
+  <script src="https://dataechoui.pages.dev/DataEchoUI.js"></script>
+  <link href="https://unpkg.com/qweather-icons@1.6.0/font/qweather-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background: url('https://xiaofeishu-picture2.pages.dev/picture/3x-00081-1182210180.webp');
+      background-size: cover;
+      background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+      /* 背景图片 */
+    }
+  </style>
+</head>
+
+<body>
+  <!--<div class="DataEchoUI-navbar">
+    <div class="logo">主页</div>
+    <div class="DataEchoUI-navbar-links">
+      <a class="DataEchoUI-highlight-1" href="index.html">主页</a>
+      <a href="./demo/index.html">Demo</a>
+    </div>
+    <div class="filler"></div>
+  </div>-->
+  <div id="DataEchoUI-navbar-left-31" style="width: 40%;backdrop-filter: blur(10px);">
+
+  </div>
+  <div class="DataEchoUI-card">
+    <h2>天气</h2>
+    <div id="weather-info">天气API正在加载</div>
+  </div>
+  <div class="DataEchoUI-card">
+    <h2>关于</h2>
+    <p>作者：没用的小废鼠</p>
+    <p>APi提供:</p>
+    oiapi
+  </div>
+  <script>
+function getWeather() {
+      var cityCode = "101210705";
+      var url = "https://oiapi.net/API/weather?city=" + cityCode;
+      
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const weatherInfo = data.data;
+          const weatherElement = document.getElementById('weather-info');
+            weatherElement.innerHTML = `
+              <p>城市: ${weatherInfo.data.city} </p>
+              <p>更新时间：${weatherInfo.data.current.date} ${weatherInfo.data.current.time} </p>
+              <p>天气: ${weatherInfo.data.weather} <img src="${weatherInfo.data.current.image}" style='width:32px;'></p>
+              <p>温度: ${weatherInfo.data.temp}°C</p>
+        `;
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error);
+        });
+    }
+    getWeather()
+</script>
+  
+</body>
+
+</html>
