@@ -16,19 +16,21 @@
     background-attachment: fixed;
       /* 背景图片 */
     }
+    .DataEchoUI-card {
+      backdrop-filter: blur(3px);
+    }
   </style>
 </head>
 
 <body>
-  <!--<div class="DataEchoUI-navbar">
-    <div class="logo">主页</div>
+  <div class="DataEchoUI-navbar">
+    <div class="logo">小废鼠主页</div>
     <div class="DataEchoUI-navbar-links">
       <a class="DataEchoUI-highlight-1" href="index.html">主页</a>
-      <a href="./demo/index.html">Demo</a>
     </div>
     <div class="filler"></div>
-  </div>-->
-  <div id="DataEchoUI-navbar-left-31" style="width: 40%;backdrop-filter: blur(10px);">
+  </div>
+  <div id="DataEchoUI-navbar-left-31" style="width: 40%;backdrop-filter: blur(3px);">
 
   </div>
   <div class="DataEchoUI-card">
@@ -39,7 +41,7 @@
     <h2>关于</h2>
     <p>作者：没用的小废鼠</p>
     <p>APi提供:</p>
-    oiapi
+    <p>oiapi</p>
   </div>
   <script>
 function getWeather() {
@@ -63,6 +65,7 @@ function getWeather() {
         });
     }
     getWeather()
+    setInterval(getWeather, 60 * 60 * 1000);
 </script>
   
 </body>
