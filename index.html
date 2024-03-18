@@ -38,7 +38,7 @@
   <div class="DataEchoUI-card">
     <h2>时间</h2>
     <p>本地时间：<span id="clock"></span></p>
-    <p>距离6月17日还有 <span id="timeLeft"></span></p>
+    <p>距离6月22日还有 <span id="timeLeft"></span></p>
     <p><div id="ys">原神好句正在加载...</div></p>
   </div>
   <div class="DataEchoUI-card">
@@ -96,7 +96,7 @@ function getWeather() {
     var today = new Date();
   
     // 设置目标日期为6月17日
-    var targetDate = new Date(today.getFullYear(), 5, 17); // 月份从0开始，所以5代表6月
+    var targetDate = new Date(today.getFullYear(), 5, 22); // 月份从0开始，所以5代表6月
   
     // 如果目标日期已经过去，则将目标日期设置为明年的6月17日
     if (today.getTime() > targetDate.getTime()) {
